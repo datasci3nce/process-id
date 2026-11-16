@@ -1,32 +1,30 @@
-# PROCESS-ID: Epistemic Reconstruction of Multi-Agent Processes
+# PROCESS-ID — Epistemic Reconstruction of Multi-Agent Processes
 
-**Research-code and manuscript snapshot.** The papers are working drafts, not peer-reviewed publications. The experiments are distinct controlled studies, not a validated single end-to-end system.
+**Public research snapshot (partial upload).** This repository currently contains two revised working papers, a research-lineage guide, release/data policies, and a replay-audit script. The full vetted experiment code, tests, summary results, and figures are **not yet committed here**. Do not interpret this repository as a complete, independently reproducible release.
 
-## Research questions
-When do partial observations determine a claim about a multi-agent execution history? When is a prediction merely plausible? Which additional records can resolve ambiguity, and how do conclusions fail when instrumentation is incomplete?
+## Research question
 
-The repository collects related *distinct* experiments, not one validated end-to-end architecture.
+When do partial observations uniquely support a claim about a multi-agent execution history? When is a reconstruction merely probable? Which new observations would resolve ambiguity, and how do results depend on instrumentation and the assumed model?
 
-## Start here
-- [`experiments/process-id-03/`](experiments/process-id-03/): deterministic preflight for matched, observationally equivalent histories; *not* a natural LLM-agent oversight benchmark.
-- [`experiments/process-id-02/`](experiments/process-id-02/): earlier LLM-agent workflow / scripted runner; 24-world live run had zero approved worlds and therefore no independent auditor evaluations. Original full live outputs are **not included**.
-- [`experiments/delay-perc/`](experiments/delay-perc/): synthetic exact certification, static and temporal prediction, evidence acquisition.
-- [`experiments/wiki-missing/`](experiments/wiki-missing/) and [`experiments/wiki-fixed-candidates/`](experiments/wiki-fixed-candidates/): known-record Wiki reconstruction and fixed-candidate graph masking. This does **not** identify private actions or directed provenance.
-- [`experiments/scale1/`](experiments/scale1/), [`experiments/parity-theory/`](experiments/parity-theory/): synthetic identifiability, factor-graph controls and known-misspecification limits.
-- [`papers/`](papers/): two **working** manuscripts, not peer reviewed.
+## Papers
 
+- [Paper 1 — *The Missing Process* (working draft)](papers/Paper_1_The_Missing_Process_REVISED_V2.md): masked recorded editor labels, withheld published Wiki links, structural baseline and evidence-loss audits.
+- [Paper 2 — *Evidence Before Inference* (working draft)](papers/Paper_2_Evidence_Before_Inference_REVISED_V2.md): separate certification from prediction and inspection, with synthetic SCALE-1, DELAY-PERC and PROCESS-ID studies.
+- [Editorial map and scientific claim ledger](papers/Editorial_Map_Claim_Ledger_REVISED_V2.md).
 
-## Previous research and code provenance
-The November studies build on **TPRN, PO-ID, IPN and SWARM-HUNT**, which are **pre-sprint research**, not newly executed experiments in this repository. See [`docs/PRIOR_RESEARCH_LINEAGE.md`](docs/PRIOR_RESEARCH_LINEAGE.md) for what each tested, what survived critical audit, what remains unverified, and the boundaries of its claims. The original historical TPRN implementation is already public in [datasci3nce/tprn-missing-process](https://github.com/datasci3nce/tprn-missing-process). The original PO-ID, IPN and SWARM-HUNT bundles have not been copied into this public package pending their own release reviews.
+Neither manuscript has been peer reviewed; the sprint-submission PDF is a separate version.
 
-## Data policy
-Only source code, synthetic test fixtures, figures, and selected aggregate results are staged. Evaluator-only targets, private SQLite execution ledgers, individual masked evaluation rows, third-party raw Wiki exports, and nested original archive ZIPs are intentionally excluded. See [DATA_POLICY.md](DATA_POLICY.md).
+## Research provenance
 
-## Reproduction
-Some tests can be run directly, but experiments that use saved private/evaluator-only data require running their generator locally or obtaining access to a separate restricted evaluation package. Raw Wiki ingest and full fixed-candidate replay require fetching pinned third-party source material independently after checking its terms. The presence of source code does **not** imply all published result numbers can be reproduced from this public snapshot alone.
+The November work builds on **TPRN, PO-ID, IPN, and SWARM-HUNT**, which predate the November 13–15, 2026 AI × Epistemics sprint. See the [prior-research lineage](docs/PRIOR_RESEARCH_LINEAGE.md). The earlier [TPRN code repository](https://github.com/datasci3nce/tprn-missing-process) is separate. Historical PO-ID, IPN, and SWARM-HUNT bundles are not being re-released here.
 
-## Licensing
-**License:** No open-source license has been selected. All rights remain reserved pending an explicit license decision. Third-party materials are not relicensed here.
+## Reproducibility status
 
-## Status
-Working research snapshot. See DATA_POLICY.md and SECURITY.md for release limitations.
+- Present: manuscripts, claim ledger, provenance guide, [one PROCESS-ID acquisition replay-audit script](experiments/process-id-03/additional_audits/acquisition_replay_audit.py).
+- Not yet present: source generators and dependencies required to run the replay script; complete experiment implementations, tests, outputs, figures and derived Wiki graph source bytes.
+- Source audits remain bounded by the declared evidence model; omitted channels can invalidate definite conclusions.
+- The full public-safe code snapshot is available from the author for manual Git upload; see [upload instructions](PUBLISH_TO_GITHUB.md).
+
+## Release and rights
+
+See [DATA_POLICY.md](DATA_POLICY.md) and [SECURITY.md](SECURITY.md). No open-source license has yet been selected; repository visibility alone grants no permission to reuse third-party assets.
