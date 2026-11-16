@@ -1,24 +1,19 @@
-# Complete the experiment-code upload
+# Public release status and reproduction notes
 
-The **public GitHub repository already exists** at https://github.com/datasci3nce/process-id and has a README, research-lineage document and revised papers. The experiment source tree is still incomplete.
+The vetted code-and-results snapshot was committed to the public [process-id repository](https://github.com/datasci3nce/process-id) on 16 November 2026. This repository includes two **working** manuscript drafts, source code, tests, selected synthetic and aggregate outputs, and figures.
 
-The complete reviewed release snapshot is provided separately as `process-id-github-ready-with-prior-work.zip`.
+The original historical TPRN, PO-ID, IPN and SWARM-HUNT code archives remain separate; see [docs/PRIOR_RESEARCH_LINEAGE.md](docs/PRIOR_RESEARCH_LINEAGE.md). Public source bytes for the external Wiki graph and evaluator-only truth/ledger files are intentionally excluded.
 
-## Upload the remaining files locally
-
-1. Download and extract the reviewed ZIP.
-2. Run these commands inside the extracted root. They preserve the existing repository and push only the files in the reviewed snapshot.
+## Checking the local release
 
 ```bash
 git clone https://github.com/datasci3nce/process-id.git
 cd process-id
-# Copy the extracted snapshot contents here, preserving the experiments/ and papers/ directories.
-git add .
-git status
-git commit -m "Add vetted experiment source, tests, summaries and figures"
-git push origin main
+find experiments -name 'test_*.py' -print
 ```
 
-If `git status` shows unexpected additions (private ledger, original evaluator-only label, API key, raw external Wiki export), **do not commit**. Never commit credential files or full raw experimental archives.
+Individual experiments have separate dependencies and frozen protocols. Their README files describe how to run tests and the limitations of replaying aggregate reports. **Not every result can be independently replayed from this repository alone.**
 
-Once all files are committed, revise the repository README to point to the actual code locations. The earlier TPRN repo is a separate historical artifact and does not need to be duplicated.
+No open-source license has yet been selected. Repository visibility does not override the data-rights restrictions documented in [DATA_POLICY.md](DATA_POLICY.md).
+
+Avoid uploading original ZIP packages, generated private SQLite ledgers, raw evaluator-only labels or API credentials to the repository.
