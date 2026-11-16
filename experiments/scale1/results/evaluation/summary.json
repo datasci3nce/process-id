@@ -1,0 +1,163 @@
+{
+  "closed_world": true,
+  "fitted_contradictions": 1625,
+  "heldout_cases": 1920,
+  "heldout_worlds": 160,
+  "known_event_topology": true,
+  "leakage_warning": "Heldout labels must not enter train_predict; scorer reads public observations and development labels only",
+  "paired_world_bootstrap": [
+    {
+      "comparison": "claim_aware_logistic minus content_logistic",
+      "observed": -0.024412065253342823,
+      "world_bootstrap_CI95": [
+        -0.030776017608485303,
+        -0.017810291601167788
+      ],
+      "world_groups": 160
+    },
+    {
+      "comparison": "claim_aware_logistic minus content_hgb",
+      "observed": -0.03244633208821498,
+      "world_bootstrap_CI95": [
+        -0.03976988773999877,
+        -0.025256504698113445
+      ],
+      "world_groups": 160
+    }
+  ],
+  "phase_transition_claim": "NONE; exploratory finite-size evidence reliability only",
+  "policies": [
+    {
+      "certified": 701,
+      "coverage_supported": 0.3651041666666667,
+      "method": "strict_receipt",
+      "supported": 701,
+      "threshold_dev": null,
+      "unsupported": 0,
+      "unsupported_risk": 0.0,
+      "world_any_unsupported_upper95": 0.02278060709122924,
+      "worlds_with_any_unsupported": 0,
+      "worlds_with_certification": 130,
+      "wrong": 0
+    },
+    {
+      "certified": 990,
+      "coverage_supported": 0.515625,
+      "method": "signed_only_exact",
+      "supported": 990,
+      "threshold_dev": null,
+      "unsupported": 0,
+      "unsupported_risk": 0.0,
+      "world_any_unsupported_upper95": 0.018664699758660745,
+      "worlds_with_any_unsupported": 0,
+      "worlds_with_certification": 159,
+      "wrong": 0
+    },
+    {
+      "certified": 1276,
+      "coverage_supported": 0.6645833333333333,
+      "method": "full_exact_reference",
+      "supported": 1276,
+      "threshold_dev": null,
+      "unsupported": 0,
+      "unsupported_risk": 0.0,
+      "world_any_unsupported_upper95": 0.018549134077503755,
+      "worlds_with_any_unsupported": 0,
+      "worlds_with_certification": 160,
+      "wrong": 0
+    },
+    {
+      "certified": 163,
+      "coverage_supported": 0.06302083333333333,
+      "method": "fitted_exact",
+      "supported": 121,
+      "threshold_dev": null,
+      "unsupported": 42,
+      "unsupported_risk": 0.25766871165644173,
+      "world_any_unsupported_upper95": 0.6967187242545418,
+      "worlds_with_any_unsupported": 36,
+      "worlds_with_certification": 61,
+      "wrong": 8
+    },
+    {
+      "certified": 995,
+      "coverage_supported": 0.5182291666666666,
+      "method": "presence_logistic",
+      "supported": 995,
+      "threshold_dev": 0.95,
+      "unsupported": 0,
+      "unsupported_risk": 0.0,
+      "world_any_unsupported_upper95": 0.018664699758660745,
+      "worlds_with_any_unsupported": 0,
+      "worlds_with_certification": 159,
+      "wrong": 0
+    },
+    {
+      "certified": 1003,
+      "coverage_supported": 0.5213541666666667,
+      "method": "content_logistic",
+      "supported": 1001,
+      "threshold_dev": 0.8,
+      "unsupported": 2,
+      "unsupported_risk": 0.0019940179461615153,
+      "world_any_unsupported_upper95": 0.0390646679455006,
+      "worlds_with_any_unsupported": 2,
+      "worlds_with_certification": 159,
+      "wrong": 0
+    },
+    {
+      "certified": 992,
+      "coverage_supported": 0.5166666666666667,
+      "method": "content_hgb",
+      "supported": 992,
+      "threshold_dev": 0.9,
+      "unsupported": 0,
+      "unsupported_risk": 0.0,
+      "world_any_unsupported_upper95": 0.018664699758660745,
+      "worlds_with_any_unsupported": 0,
+      "worlds_with_certification": 159,
+      "wrong": 0
+    },
+    {
+      "certified": 999,
+      "coverage_supported": 0.5203125,
+      "method": "claim_aware_logistic",
+      "supported": 999,
+      "threshold_dev": 0.9,
+      "unsupported": 0,
+      "unsupported_risk": 0.0,
+      "world_any_unsupported_upper95": 0.018664699758660745,
+      "worlds_with_any_unsupported": 0,
+      "worlds_with_certification": 159,
+      "wrong": 0
+    }
+  ],
+  "prediction_scores": [
+    {
+      "auroc": 0.8954564925329543,
+      "brier": 0.1249877903784706,
+      "calibration_abs_error": 0.054639087300989764,
+      "method": "presence_logistic"
+    },
+    {
+      "auroc": 0.9435900961856734,
+      "brier": 0.09104632470239804,
+      "calibration_abs_error": 0.020129271227075418,
+      "method": "content_logistic"
+    },
+    {
+      "auroc": 0.9366883116883117,
+      "brier": 0.0990805915372702,
+      "calibration_abs_error": 0.025792761873328907,
+      "method": "content_hgb"
+    },
+    {
+      "auroc": 0.9709690609240834,
+      "brier": 0.06663425944905522,
+      "calibration_abs_error": 0.023624309567816693,
+      "method": "claim_aware_logistic"
+    }
+  ],
+  "reference_identifiable": 1276,
+  "truth_true": 1452
+}

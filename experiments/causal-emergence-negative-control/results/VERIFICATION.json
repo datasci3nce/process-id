@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "checks": [
+    "analytic micro/macro causal power",
+    "validity of strong lumpability",
+    "matching macroscale recoverability and Brier",
+    "independent observed-bit formulas",
+    "grouped-bit formulas",
+    "macro-blind negative control",
+    "zero-CE random negative control",
+    "all masks retained in denominators"
+  ],
+  "rows": {
+    "models": 6,
+    "mask_rows": 3504,
+    "curve_rows": 126
+  }
+}

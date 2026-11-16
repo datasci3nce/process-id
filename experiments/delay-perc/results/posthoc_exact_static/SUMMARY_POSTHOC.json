@@ -1,0 +1,111 @@
+{
+  "analysis_type": "POST-HOC RETROSPECTIVE DIAGNOSTIC; no frozen pre-run comparison changed",
+  "heldout": {
+    "static_logistic": 0.1507474707998256,
+    "timed_logistic": 0.11151463053030851,
+    "dde_delayed": 0.1498479396007981,
+    "dde_no_delay": 0.15027951269464945,
+    "mc_event_posterior": 0.09091050889756945,
+    "hybrid_exact_then_static": 0.11601474570268903,
+    "n_cases": 1600,
+    "n_worlds": 160,
+    "n_yes": 168,
+    "n_no": 524,
+    "n_unknown": 908
+  },
+  "dedup_100pct": {
+    "static_logistic": 0.15385949786489822,
+    "timed_logistic": 0.12390462765446167,
+    "dde_delayed": 0.1532234567120056,
+    "dde_no_delay": 0.15339283543809085,
+    "mc_event_posterior": 0.10101167655285496,
+    "hybrid_exact_then_static": 0.12890527300298785,
+    "n_cases": 1440,
+    "n_worlds": 160,
+    "n_yes": 114,
+    "n_no": 418,
+    "n_unknown": 908
+  },
+  "unresolved_only": {
+    "static_logistic": 0.20443126996068556,
+    "timed_logistic": 0.1964991333235043,
+    "dde_delayed": 0.20434086075936106,
+    "dde_no_delay": 0.20488918996234573,
+    "mc_event_posterior": 0.16019472933492412,
+    "hybrid_exact_then_static": 0.20443126996068556,
+    "n_cases": 908,
+    "n_worlds": 159,
+    "n_yes": 0,
+    "n_no": 0,
+    "n_unknown": 908
+  },
+  "certified_only": {
+    "static_logistic": 0.0803068788373099,
+    "timed_logistic": 3.1731080227107117e-06,
+    "dde_delayed": 0.07834566732915768,
+    "dde_no_delay": 0.07862404021044685,
+    "mc_event_posterior": 0.0,
+    "hybrid_exact_then_static": 0.0,
+    "n_cases": 692,
+    "n_worlds": 160,
+    "n_yes": 168,
+    "n_no": 524,
+    "n_unknown": 0
+  },
+  "temporal_minus_hybrid": {
+    "difference": -0.004500115172380534,
+    "bootstrap_95pct": [
+      -0.009848784415151347,
+      0.000557329532087181
+    ],
+    "worlds": 160,
+    "resamples": 5000,
+    "seed": 20261115
+  },
+  "temporal_minus_hybrid_dedup": {
+    "difference": -0.005000645348526178,
+    "bootstrap_95pct": [
+      -0.010943470208605498,
+      0.0006187268107702918
+    ],
+    "worlds": 160,
+    "resamples": 5000,
+    "seed": 20261115
+  },
+  "montecarlo_minus_hybrid": {
+    "difference": -0.025104236805119595,
+    "bootstrap_95pct": [
+      -0.03768919624265411,
+      -0.012763961521248842
+    ],
+    "worlds": 160,
+    "resamples": 5000,
+    "seed": 20261115
+  },
+  "montecarlo_minus_hybrid_unresolved": {
+    "difference": -0.044236540625761406,
+    "bootstrap_95pct": [
+      -0.0659618521104241,
+      -0.023148908779507947
+    ],
+    "worlds": 159,
+    "resamples": 5000,
+    "seed": 20261115
+  },
+  "temporal_minus_hybrid_unresolved": {
+    "difference": -0.007932136637181243,
+    "bootstrap_95pct": [
+      -0.017112986730159534,
+      0.0006971251510690136
+    ],
+    "worlds": 159,
+    "resamples": 5000,
+    "seed": 20261115
+  },
+  "static_to_temporal_gain": 0.03923284026951708,
+  "static_to_hybrid_gain": 0.034732725097136555,
+  "fraction_of_temporal_gain_accounted_for_by_exact_gate": 0.8852972371751274,
+  "fraction_of_temporal_gain_accounted_for_by_exact_gate_dedup": 0.8330606905189024,
+  "interpretation": "Descriptive decomposition on the evaluated dataset; not a causal attribution or pre-registered claim.",
+  "information_boundary": "Public predictions and observations determine hybrid; evaluator labels enter only in scores()."
+}

@@ -1,0 +1,99 @@
+{
+  "design": {
+    "n_worlds": 400,
+    "dev_worlds": 240,
+    "heldout_worlds": 160,
+    "cases": 4000,
+    "heldout_cases": 1600,
+    "masks_per_world": 10,
+    "heldout_truth_positive_rate": 0.3375
+  },
+  "reference_identification": {
+    "yes": 168,
+    "no": 524,
+    "ambiguous": 908,
+    "certification_correct": 692,
+    "certification_factual_errors": 0
+  },
+  "predictions": {
+    "static_logistic": {
+      "brier": 0.15074747079982556,
+      "auc": 0.8419977288609364,
+      "positive_mean": 0.32178272372148475,
+      "accuracy_at_0_5": 0.783125
+    },
+    "timed_logistic": {
+      "brier": 0.11151463053030851,
+      "auc": 0.914022536687631,
+      "positive_mean": 0.32815186395019696,
+      "accuracy_at_0_5": 0.836875
+    },
+    "dde_delayed": {
+      "brier": 0.1498479396007981,
+      "auc": 0.8427489517819706,
+      "positive_mean": 0.3213339953367918,
+      "accuracy_at_0_5": 0.784375
+    },
+    "dde_no_delay": {
+      "brier": 0.15027951269464945,
+      "auc": 0.8425288259958073,
+      "positive_mean": 0.3247447000585868,
+      "accuracy_at_0_5": 0.779375
+    },
+    "dde_delayed_alone": {
+      "brier": 0.215325364530783,
+      "auc": 0.5495728511530398,
+      "positive_mean": 0.3069097716607518,
+      "accuracy_at_0_5": 0.683125
+    },
+    "mc_event_posterior": {
+      "brier": 0.09091050889756945,
+      "auc": 0.9432713137665967,
+      "positive_mean": 0.33131510416666665,
+      "accuracy_at_0_5": 0.8625
+    }
+  },
+  "paired_world_bootstrap": {
+    "timed_logistic_minus_static_logistic": {
+      "difference": -0.03923284026951705,
+      "cluster_bootstrap_95pct": [
+        -0.05196241159804721,
+        -0.02777150231595024
+      ],
+      "worlds": 160
+    },
+    "dde_delayed_minus_dde_no_delay": {
+      "difference": -0.00043157309385136454,
+      "cluster_bootstrap_95pct": [
+        -0.00473216931897159,
+        0.004375763233742738
+      ],
+      "worlds": 160
+    },
+    "dde_delayed_minus_timed_logistic": {
+      "difference": 0.03833330907048958,
+      "cluster_bootstrap_95pct": [
+        0.027363259185320524,
+        0.04987983639211547
+      ],
+      "worlds": 160
+    },
+    "mc_event_posterior_minus_dde_delayed": {
+      "difference": -0.058937430703228634,
+      "cluster_bootstrap_95pct": [
+        -0.07720926955776831,
+        -0.0413256096738707
+      ],
+      "worlds": 160
+    },
+    "mc_event_posterior_minus_timed_logistic": {
+      "difference": -0.020604121632739066,
+      "cluster_bootstrap_95pct": [
+        -0.03041104956742079,
+        -0.010350551618582565
+      ],
+      "worlds": 160
+    }
+  },
+  "note": "The numeric DDE is a delayed linear influence surrogate, NOT generative truth, tested on synthetic agent-channel networks."
+}

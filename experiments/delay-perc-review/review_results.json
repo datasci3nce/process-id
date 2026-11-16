@@ -1,0 +1,94 @@
+{
+  "scope": "Post-hoc reanalysis of saved predictions and generated histories; no new training, simulations, or LLM calls.",
+  "independent_verification": {
+    "worlds": 400,
+    "cases": 4000,
+    "receipts": 123184,
+    "mismatches": 0,
+    "original_manifest_files": 22,
+    "heldout_verdicts": {
+      "UNKNOWN": 908,
+      "NO": 524,
+      "YES": 168
+    }
+  },
+  "saved_method_brier": {
+    "all": {
+      "n": 1600,
+      "static_logistic": 0.1507474707998256,
+      "timed_logistic": 0.11151463053030851,
+      "dde_delayed": 0.1498479396007981,
+      "dde_no_delay": 0.15027951269464945,
+      "mc_event_posterior": 0.09091050889756945
+    },
+    "ambiguous": {
+      "n": 908,
+      "static_logistic": 0.20443126996068556,
+      "timed_logistic": 0.1964991333235043,
+      "dde_delayed": 0.20434086075936106,
+      "dde_no_delay": 0.20488918996234573,
+      "mc_event_posterior": 0.16019472933492412
+    },
+    "identified": {
+      "n": 692,
+      "static_logistic": 0.0803068788373099,
+      "timed_logistic": 3.1731080227107117e-06,
+      "dde_delayed": 0.07834566732915768,
+      "dde_no_delay": 0.07862404021044685,
+      "mc_event_posterior": 0.0
+    }
+  },
+  "posthoc_certification_wrapper_brier": {
+    "cert_then_static": 0.11601474570268903,
+    "cert_then_timed": 0.11151325816108869
+  },
+  "share_of_original_improvement_on_identified_cases": 0.8852622570612636,
+  "posthoc_bootstrap": {
+    "seed": 2026111501,
+    "replicates": 4000,
+    "worlds": 160,
+    "contrasts": {
+      "timed_logistic_minus_cert_then_static": {
+        "difference": -0.004500115172380534,
+        "world_bootstrap_95pct": [
+          -0.009738370324795144,
+          0.0005764659173829399
+        ]
+      },
+      "cert_then_timed_minus_cert_then_static": {
+        "difference": -0.004501487541600356,
+        "world_bootstrap_95pct": [
+          -0.009739524398251589,
+          0.0005753907935411755
+        ]
+      },
+      "mc_event_posterior_minus_cert_then_static": {
+        "difference": -0.025104236805119595,
+        "world_bootstrap_95pct": [
+          -0.037605237271141415,
+          -0.012576287550471918
+        ]
+      }
+    }
+  },
+  "deduplicated_sensitivity": {
+    "n": 1440,
+    "brier": {
+      "static_logistic": 0.15385949786489822,
+      "timed_logistic": 0.12390462765446167,
+      "dde_delayed": 0.1532234567120056,
+      "dde_no_delay": 0.15339283543809085,
+      "mc_event_posterior": 0.10101167655285496,
+      "cert_then_static": 0.12890527300298785,
+      "cert_then_timed": 0.12390362017898744
+    },
+    "share_of_original_improvement_on_identified_cases": 0.8330270574079213
+  },
+  "limits": [
+    "Certificates assume the declared known topology, truthful receipts, and delay support.",
+    "The original NetworkX auditor was not executed successfully in this environment because NetworkX is absent; this script independently uses heap-based Dijkstra.",
+    "Bootstrap intervals describe world-sampling variation in this synthetic generator, not real-agent transfer.",
+    "The wrapper was selected after inspecting the completed experiment; it is not a prospective primary endpoint."
+  ],
+  "input_zip_sha256": "a94fae752b9ab5961e48512ddd57e6dc8bbf0bbabe230cf7d2791f0c28f7e367"
+}

@@ -1,0 +1,12 @@
+{
+  "actual_truth_disagreements": 0,
+  "auth_receipt_violations": 0,
+  "authenticated_and_weak_records_checked": 574109,
+  "cases": 4800,
+  "development_worlds": 240,
+  "factual_label_errors": 0,
+  "heldout_worlds": 160,
+  "public_private_field_leak_violations": 0,
+  "split_world_overlap": 0,
+  "worlds": 400
+}

@@ -1,0 +1,12 @@
+{
+  "scenario": {
+    "dev_prior_768": 0.15793705966854232,
+    "q_half_768": 0.20324601534238007,
+    "q_high_768": 0.17811145679774495,
+    "uniform_delay_768": 0.16716590280108048,
+    "original_mc_96": 0.16019472933492412
+  },
+  "n_cases": 908,
+  "prior_source": "Original fitted development-world prior for dev_prior_768; others are untuned post-hoc sensitivity settings",
+  "MC_estimation_noise": "Each MC probability approximates one fixed scenario posterior; low draw count causes variance; not a full posterior validation"
+}

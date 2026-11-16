@@ -1,0 +1,7 @@
+{
+  "total": 1595,
+  "original_certified": 692,
+  "corrupted_certified": 709,
+  "incorrect_certificates": 30,
+  "incorrect_among_certified": 0.04231311706629055
+}

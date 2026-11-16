@@ -1,0 +1,106 @@
+{
+  "backend": "scripted",
+  "model": null,
+  "execution_worlds": 24,
+  "train_approved": 16,
+  "test_approved": 8,
+  "ineligible_no_approval": 0,
+  "test_true": 4,
+  "test_false": 4,
+  "mask_cases": 40,
+  "mask_certificates": {
+    "YES": 18,
+    "NO": 20,
+    "UNKNOWN": 2
+  },
+  "all_certificates_factually_correct": true,
+  "unresolved_brier": {
+    "n": 2,
+    "static": 0.305,
+    "candidate_posterior": 0.49583506872136607
+  },
+  "all_case_brier": {
+    "static": 0.153125,
+    "exact_static": 0.01525,
+    "exact_posterior": 0.024791753436068303
+  },
+  "acquisition": {
+    "iid50|q=1.0|random": {
+      "initially_unresolved": 0,
+      "certified": 0,
+      "mean_cost": NaN,
+      "false_certificates": 0
+    },
+    "iid50|q=1.0|fixed": {
+      "initially_unresolved": 0,
+      "certified": 0,
+      "mean_cost": NaN,
+      "false_certificates": 0
+    },
+    "iid50|q=1.0|adaptive": {
+      "initially_unresolved": 0,
+      "certified": 0,
+      "mean_cost": NaN,
+      "false_certificates": 0
+    },
+    "iid50|q=0.5|random": {
+      "initially_unresolved": 0,
+      "certified": 0,
+      "mean_cost": NaN,
+      "false_certificates": 0
+    },
+    "iid50|q=0.5|fixed": {
+      "initially_unresolved": 0,
+      "certified": 0,
+      "mean_cost": NaN,
+      "false_certificates": 0
+    },
+    "iid50|q=0.5|adaptive": {
+      "initially_unresolved": 0,
+      "certified": 0,
+      "mean_cost": NaN,
+      "false_certificates": 0
+    },
+    "group50|q=1.0|random": {
+      "initially_unresolved": 2,
+      "certified": 2,
+      "mean_cost": 3.5,
+      "false_certificates": 0
+    },
+    "group50|q=1.0|fixed": {
+      "initially_unresolved": 2,
+      "certified": 2,
+      "mean_cost": 1.0,
+      "false_certificates": 0
+    },
+    "group50|q=1.0|adaptive": {
+      "initially_unresolved": 2,
+      "certified": 2,
+      "mean_cost": 1.0,
+      "false_certificates": 0
+    },
+    "group50|q=0.5|random": {
+      "initially_unresolved": 2,
+      "certified": 2,
+      "mean_cost": 4.0,
+      "false_certificates": 0
+    },
+    "group50|q=0.5|fixed": {
+      "initially_unresolved": 2,
+      "certified": 1,
+      "mean_cost": 2.5,
+      "false_certificates": 0
+    },
+    "group50|q=0.5|adaptive": {
+      "initially_unresolved": 2,
+      "certified": 2,
+      "mean_cost": 2.0,
+      "false_certificates": 0
+    }
+  },
+  "stress_projection": {
+    "unexecuted_counterfactual_cases": 3,
+    "potential_false_NO_certificates_on_iid50_if_extra_hidden_read_occurred": 3,
+    "warning": "Only projection, no new native stress trace executed; not an observed failure rate."
+  }
+}

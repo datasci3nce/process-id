@@ -1,0 +1,106 @@
+{
+  "backend": "scripted",
+  "model": null,
+  "execution_worlds": 120,
+  "train_approved": 80,
+  "test_approved": 40,
+  "ineligible_no_approval": 0,
+  "test_true": 11,
+  "test_false": 29,
+  "mask_cases": 200,
+  "mask_certificates": {
+    "YES": 43,
+    "UNKNOWN": 30,
+    "NO": 127
+  },
+  "all_certificates_factually_correct": true,
+  "unresolved_brier": {
+    "n": 30,
+    "static": 0.19866452214176464,
+    "candidate_posterior": 0.19972857231304425
+  },
+  "all_case_brier": {
+    "static": 0.1541464320732354,
+    "exact_static": 0.0297996783212647,
+    "exact_posterior": 0.029959285846956635
+  },
+  "acquisition": {
+    "iid50|q=1.0|random": {
+      "initially_unresolved": 3,
+      "certified": 3,
+      "mean_cost": 1.3333333333333333,
+      "false_certificates": 0
+    },
+    "iid50|q=1.0|fixed": {
+      "initially_unresolved": 3,
+      "certified": 3,
+      "mean_cost": 1.0,
+      "false_certificates": 0
+    },
+    "iid50|q=1.0|adaptive": {
+      "initially_unresolved": 3,
+      "certified": 3,
+      "mean_cost": 1.3333333333333333,
+      "false_certificates": 0
+    },
+    "iid50|q=0.5|random": {
+      "initially_unresolved": 3,
+      "certified": 2,
+      "mean_cost": 2.0,
+      "false_certificates": 0
+    },
+    "iid50|q=0.5|fixed": {
+      "initially_unresolved": 3,
+      "certified": 2,
+      "mean_cost": 2.0,
+      "false_certificates": 0
+    },
+    "iid50|q=0.5|adaptive": {
+      "initially_unresolved": 3,
+      "certified": 2,
+      "mean_cost": 2.0,
+      "false_certificates": 0
+    },
+    "group50|q=1.0|random": {
+      "initially_unresolved": 9,
+      "certified": 9,
+      "mean_cost": 3.2222222222222223,
+      "false_certificates": 0
+    },
+    "group50|q=1.0|fixed": {
+      "initially_unresolved": 9,
+      "certified": 9,
+      "mean_cost": 1.3333333333333333,
+      "false_certificates": 0
+    },
+    "group50|q=1.0|adaptive": {
+      "initially_unresolved": 9,
+      "certified": 9,
+      "mean_cost": 1.2222222222222223,
+      "false_certificates": 0
+    },
+    "group50|q=0.5|random": {
+      "initially_unresolved": 9,
+      "certified": 6,
+      "mean_cost": 3.5555555555555554,
+      "false_certificates": 0
+    },
+    "group50|q=0.5|fixed": {
+      "initially_unresolved": 9,
+      "certified": 7,
+      "mean_cost": 2.0,
+      "false_certificates": 0
+    },
+    "group50|q=0.5|adaptive": {
+      "initially_unresolved": 9,
+      "certified": 9,
+      "mean_cost": 1.6666666666666667,
+      "false_certificates": 0
+    }
+  },
+  "stress_projection": {
+    "unexecuted_counterfactual_cases": 24,
+    "potential_false_NO_certificates_on_iid50_if_extra_hidden_read_occurred": 23,
+    "warning": "Only projection, no new native stress trace executed; not an observed failure rate."
+  }
+}

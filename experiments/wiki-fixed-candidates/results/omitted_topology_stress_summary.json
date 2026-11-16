@@ -1,0 +1,10 @@
+{
+  "heldout_worlds": 160,
+  "worlds_with_hypothetical_unmodeled_shortcut": 38,
+  "heldout_masks": 1600,
+  "issued": 692,
+  "false_certificates": 135,
+  "false_NO": 135,
+  "false_YES": 0,
+  "original_truth_invariance_for_unmodified_worlds": true
+}

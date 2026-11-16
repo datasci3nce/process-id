@@ -1,0 +1,5 @@
+{
+  "status": "Source-verified fixed-target control; not a new optimizer evaluation",
+  "fact": "For independent nuisance transitions and independently masked observations, P(M2 | OM,OA,OB) = P(M2 | OM). Hence changing nuisance dynamics cannot improve the Bayes-optimal reconstruction of this same target.",
+  "implication": "CE-guided selection cannot obtain a strictly better optimal same-target Bayes score from these nuisance variables in this factorized task; performance comparisons need interacting models or finite-resource constraints."
+}

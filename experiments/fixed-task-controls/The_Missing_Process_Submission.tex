@@ -1,0 +1,237 @@
+\documentclass[10pt,twocolumn]{article}
+\usepackage[margin=0.77in,columnsep=0.27in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,graphicx,hyperref,enumitem,xcolor,microtype,array}
+\hypersetup{colorlinks=true,urlcolor=blue!55!black,citecolor=blue!55!black,linkcolor=blue!55!black}
+\newtheorem{proposition}{Proposition}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\ind}{\mathbb{I}}
+\setlist[itemize]{leftmargin=1.2em,itemsep=1pt,topsep=3pt}
+\emergencystretch=1.5em
+\title{\vspace{-1em}\bfseries The Missing Process:\\[3pt] Epistemic Recoverability from Partial Multi-Agent Records}
+\author{\small Kishore Kumar Mariappan\\Independent Researcher}
+\date{\small AI $\times$ Epistemics Research Sprint (13--15 November 2026)\\[2pt] Track 2: Trust Infrastructure}
+\begin{document}
+\maketitle
+\vspace{-1em}
+\begin{abstract}
+\noindent How much of a distributed AI-agent process can be recovered after its records disappear? We connect hidden Markov smoothing, temporal factor graphs, claim-conditioned partition functions, and evidence percolation while distinguishing a likely reconstruction from a uniquely justified historical claim. On the public Collusion Wiki corpus (14,591 revisions), we mask 527 recorded editor labels from 237 disjoint test pages. A simple within-page majority predicts 91/527 labels correctly (17.3\%), exceeding page-aware Markov smoothing (78/527, 14.8\%), although smoothing improves Top-5 retrieval (33.6\% versus 29.0\%). Separately, we mask 199 published edges in a derived 11,177-edge agent-interaction graph. Two-hop retrieval obtains 62.3\% Top-1 with all other edges retained, declining to 16.1\% under 25\% independent retention; shared in-neighbor scoring proves more robust to severe source-correlated deletion, subject to changing candidate pools. Exact parity-factor-graph tests on up to 65,536 nodes show that global free-energy density need not predict claim-specific identification. A corrected synthetic delivery benchmark further shows better ambiguity probability estimates without better certification than conventional checks. The real-data tasks evaluate \emph{withheld recorded objects}, not previously unobserved private events or causal provenance. Our contribution is a reproducible, claim-bounded comparison of inference under missing evidence, including the failure of more elaborate methods to beat simple baselines.\end{abstract}
+
+\section{Introduction}
+Agent systems create heterogeneous records: messages, execution outcomes, receipts, artifact hashes, and later assertions. A high probability of a reconstructed claim is not equivalent to knowing that the observed evidence rules out a different history. This distinction becomes particularly important under missingness and when the auditor's process model omits genuine mechanisms.
+
+We investigate the same underlying question across three mathematical representations: \emph{Which claims about a hidden process remain uniquely supported after evidence is lost?} The connection is not that agents are physically thermalizing. It is that inference on a history distribution is a statistical-mechanical partition-function problem; evidence deletion changes its factors; and the target proposition, rather than global graph connectivity, determines the recovery criterion. The factor-graph/Bethe connection is established literature \cite{yedidia2005,zdeborova2016}, as are noisy tree-reconstruction/percolation thresholds \cite{evans2000}. Our contribution is an explicit claim-level operationalization and a critical synthetic benchmarking record, not the discovery of those mathematical equivalences.
+
+\paragraph{Provenance of the work.} The TPRN, SWARM-HUNT, PO-ID, IPN and previous real-Wiki known-node experiments, as well as the archived debate-model parameters, predate 13 November 2026. The sprint-period work comprises: (i) a newly executed Wiki masked-revision and masked-edge study with its negative-sampling repair and score audit; (ii) corrected and fully regenerated SCALE-1 evidence-mask data and predictor comparisons; (iii) exact parity-factor-graph scaling checks; and (iv) the present mathematical synthesis. Prior prototypes and reported earlier scores are not presented as new sprint results.
+
+\paragraph{Claims and scope.} We provide (i) a definition separating prediction, identification and model contradiction; (ii) exact parity-graph tests of the distinction between bulk entropy and target-specific recovery; (iii) a real-Wiki masked-record reconstruction comparison; and (iv) a corrected mechanism-held-out synthetic audit. We report null and negative results, and distinguish synthetic or archived evidence from independently validated real-agent trace reconstruction.
+
+
+\section{Research Lineage: Failures and Corrections}
+The research started with \emph{Temporal-Persistence Reconstruction Network} (TPRN): reconstructing distributed processes from typed temporal traces, persistent artifacts and missing relations. The pre-sprint work was an iterative falsification process, not an uninterrupted sequence of improvements \cite{mariappan2026tprn,mariappan2026provenance}.
+
+\begin{itemize}[leftmargin=1.2em,itemsep=1.5pt,topsep=2pt]
+\item \textbf{Retrieval is not provenance.} Local typed structure proved useful for proposing links, but shared strings, close timestamps or a plausible path cannot by themselves establish object identity, directed information transfer, or joint work. The 2A/2A.1/2B and PO-ID audits separated these claims and permitted \texttt{UNRESOLVED}.
+\item \textbf{High accuracy can be a shortcut.} An early reconstruction task was solved by a simple logical baseline. A later structural candidate benchmark admitted a minimum-arity heuristic (62.5\% Top-1); TPRN-2 put the true answer last in all 424,625 test cases, enabling perfect prediction by position alone. These are invalid as evidence of hidden-process inference.
+\item \textbf{Complexity did not reliably win.} Earlier real-Wiki known-node tests compared factor/spectral methods with IPN and explicit constraints, but did not label unobserved causal acts. An evidence-acquisition experiment found no material adaptive advantage over a fixed cascade. Archived lexical HMM and related collective-behavior branches had different targets; they do not validate historical reconstruction.
+\end{itemize}
+
+The sprint-period results below preserve the same discipline: a failed Top-1 Markov advantage, a confounded structural deletion curve, and a learned auditor whose better probability estimates do not surpass conventional certification. A broader audit trail, including adjacent exploratory branches, is provided in the companion lineage note; these are not additional reported sprint experiments.
+
+\section{From HMMs to Factor Graphs}
+Let $H=(X_1,\ldots,X_T)$ denote latent states and $Y_t$ observations. An HMM factorizes as
+\begin{equation}
+P(H,Y)=\pi(X_1)\prod_{t=2}^{T}A(X_{t-1},X_t)\prod_{t=1}^{T}B(Y_t\mid X_t).
+\label{eq:hmm}
+\end{equation}
+Forward--backward smoothing is sum-product belief propagation on the chain in Eq.~\eqref{eq:hmm}. An unobserved $Y_t$ contributes factor one; this does not imply the unknown editor is identifiable. This is an exact inference identity, not a new algorithm.
+
+An interacting agent system has additional variables (execution-success bits, inbox states, artifact versions, messages) and cross-agent constraint factors. Let $\psi_a(H_a)$ encode each process or evidence-dependency constraint and let $\ell_e(o_e\mid H)$ encode an observed record. For evidence mask $M_e\in\{0,1\}$,
+\begin{equation}
+P_{\theta}(H\mid O_M) = \frac{1}{Z_M}\prod_{a}\psi_{a,\theta}(H_a)
+\prod_{e:M_e=1}\ell_e(o_e\mid H).
+\label{eq:factor}
+\end{equation}
+Define $E_M(H)$ as minus the log of the unnormalized factors, allowing $E=+\infty$ for hard contradictions. The partition function $Z_M=\sum_H\exp[-E_M(H)]$ and variational identity
+\begin{equation}
+-\log Z_M=\min_{q}\Big\{\mathbb E_q[E_M(H)]-\mathcal{H}(q)\Big\}
+\label{eq:free}
+\end{equation}
+connect probabilistic smoothing to Gibbs free energy. For loopy graphs, Bethe free energy approximates Eq.~\eqref{eq:free}, with belief-propagation fixed points corresponding to stationary points under the usual conditions \cite{yedidia2005}. This formal identity does \emph{not} imply thermodynamic equilibrium, heat, or a physical temperature for AI agents.
+
+\section{Claim-Conditioned Recovery}
+An audit target is a Boolean function $T(H)$, such as whether recipient $B$ received version $v$ before an action. A declared reference class $\Theta_{\mathrm{ref}}$ defines compatible histories $\calC_{\mathrm{ref}}(O_M)$. The identifiable-claim indicator is
+\begin{equation}
+\begin{aligned}
+K_T(O_M)=\ind\big[\;&\calC_{\mathrm{ref}}(O_M)\neq\varnothing\\[-2pt]
+&\land\;|\{T(h):h\in\calC_{\mathrm{ref}}(O_M)\}|=1\big].
+\end{aligned}
+\label{eq:ident}
+\end{equation}
+The realized truth $T(H^*)$ is a different reference; an evidential authorization rule is a third criterion. All three must be reported separately.
+
+\paragraph{Claim-conditioned free energies.} Write $Z_t=\sum_{H:T(H)=t}\exp[-E_M(H)]$, $t\in\{0,1\}$, and $F_t=-\log Z_t$. Then
+\begin{equation}
+\log\frac{P(T=1\mid O_M)}{P(T=0\mid O_M)}=F_0-F_1.
+\label{eq:gap}
+\end{equation}
+For noiseless hard constraints with positive weight on every admissible history, exact identification occurs iff \emph{exactly one} of $Z_0,Z_1$ is positive. Both zero means model contradiction. Both positive means non-identification even if the log odds in Eq.~\eqref{eq:gap} are large. Under a strictly positive noisy likelihood both can stay positive, so Bayesian concentration must not be reported as logical identification.
+
+\begin{proposition}[Monotonicity under truthful evidence]
+If $H^*\in\calC_{\mathrm{ref}}(O_S)$ and each added observation imposes a truthful constraint within a fixed reference class, then $K_T(O_S)=1$ implies $K_T(O_{S\cup\{e\}})=1$.
+\end{proposition}
+\noindent\emph{Reason.} Adding a truthful constraint removes alternatives while preserving $H^*$; a singleton claim-value set therefore cannot expand. Under a misspecified fitted class the compatible set may instead become empty, so fitted \emph{certification} can disappear into contradiction. This is not a monotone increasing event.
+
+With independent retention $p$ of a fixed set of $m$ potential observations, the finite claim reliability curve is
+\begin{equation}
+R_T(p)=\sum_{S\subseteq[m]} K_T(O_S)\,p^{|S|}(1-p)^{m-|S|}.
+\label{eq:reliability}
+\end{equation}
+This is closely related to coherent-system reliability and decision-relative discernibility, rather than an original percolation theorem \cite{barlow1988}. For an individual audit, $R_T(p)$ is only an average over possible masks; it is not a certificate for the realized evidence $O_S$.
+
+\paragraph{Two distinct deletion processes.} A post-hoc record-retention probability $p$ changes what the auditor observes, without altering the realized history. A forward transmission probability $q$ changes the process itself. For an idealized symmetric noisy broadcast on a regular $b$-ary tree with binary flip probability $\varepsilon$, the classical reconstruction threshold involves $b(1-2\varepsilon)^2$; independent edge transmission modifies the effective branching process under additional assumptions \cite{evans2000}. Neither formula may be substituted for Eq.~\eqref{eq:reliability} merely by renaming $q$ as evidence retention $p$.
+
+\section{Real-Record Reconstruction on Collusion Wiki}
+\paragraph{Data and two bounded reconstruction targets.} We ran the amended ER-WIKI-MISSING-1 v0.1.1 protocol on the public Wiki revision export and on a separately published derived agent-interaction graph \cite{collusionwiki2026,wikiswarm2026}. The source notebooks pin the raw revision-text SHA-256 \texttt{60df4a51\ldots e3f793} and a graph commit; the uploaded evaluation archive contains derived rows and recorded hashes, not the original corpus bytes. Thus this report independently rechecks score arithmetic but not raw-source ingestion. The two tasks are \emph{recorded-label interpolation} and \emph{known-edge ranking}; neither supplies ground truth for hidden actions in the Hugging Face incident or private cross-service transfers.
+
+\paragraph{Masked recorded revisions.} The release contains 14,591 revisions on 4,579 pages. The page-disjoint 70/30 approximate split yields 1,245 development masks and 527 test masks, with the latter drawn from only 237 pages (selected interior revisions with labeled neighbors). The entire target revision, including its label, timestamp, and text, is withheld; model features use visible editor labels only. The candidate set comprises development labels plus visible page labels. The true label is absent from it in 71/527 cases (13.5\%), which remain in the denominator. This is a supplied-gap task, not missing-gap discovery. Editor labels are not verified unique agent identities.
+
+\begin{table}[t]
+\centering
+\caption{Real Wiki masked-editor reconstruction (527 targets clustered within 237 pages). The within-page majority is the strongest tested Top-1 baseline.}
+\label{tab:wiki_revision}
+\setlength{\tabcolsep}{3.4pt}\footnotesize
+\begin{tabular}{@{}lrrr@{}}\toprule
+Method & Correct & Top-1 & Top-5\\\midrule
+Previous editor & 73 & 13.9\% & 13.9\%\\
+Next editor & 78 & 14.8\% & 14.8\%\\
+Page majority & \textbf{91} & \textbf{17.3\%} & 29.0\%\\
+Markov filter & 24 & 4.6\% & 9.9\%\\
+Markov bridge & 33 & 6.3\% & 13.9\%\\
+Page-aware bridge & 78 & 14.8\% & \textbf{33.6\%}\\\bottomrule
+\end{tabular}
+\end{table}
+
+Page-aware smoothing loses 13 Top-1 cases to page majority (estimated difference $-2.47$ percentage points, 95\% page-cluster bootstrap interval $[-5.95,+0.92]$), but improves Top-5 retrieval by $4.55$ points (interval $[+1.92,+7.30]$). The point is not that a complex Markov model wins: \emph{a simple local frequency prior is stronger for exact label reconstruction}. In the audit of 524 cases containing text, the hidden full-body snapshot occurs verbatim in an adjacent snapshot in 371 (70.8\%); this matters for any future text reconstruction task, although no text entered this predictor.
+
+\paragraph{Withheld published graph edges.} The separately derived graph has 11,177 unique directed edges and 1,958 nodes. For 199 distinct source nodes we hide one published edge each, then additionally retain 100, 75, 50, or 25\% of remaining edges using independent or source-correlated deletion. A 20-way evaluator-supplied candidate set contains the withheld edge plus reference-graph non-neighbor decoys; all true published neighbors are excluded as negatives. Predictors receive only the visible adjacency, not the reference graph. Cases without both visible endpoints count as abstentions in a fixed 199-case denominator. We compare degree, two-hop paths, shared in-neighbors, three-hop paths, and a randomized rank.
+
+\begin{table}[t]
+\centering
+\caption{Real derived-graph Top-1 known-edge retrieval (199 fixed targets per condition). Changing matched distractors and node visibility across masks limits a causal interpretation of these curves.}
+\label{tab:wiki_graph}
+\setlength{\tabcolsep}{3pt}\footnotesize
+\begin{tabular}{@{}llrrr@{}}\toprule
+Deletion & Retained & Two-hop & Shared-in & Eligible \\\midrule
+Independent & 100\% & 62.3\% & 41.2\% & 199\\
+ & 50\% & 36.2\% & 34.2\% & 169\\
+ & 25\% & 16.1\% & 18.6\% & 140\\
+Source-corr. & 100\% & 63.8\% & 42.7\% & 199\\
+ & 50\% & 26.6\% & 37.7\% & 144\\
+ & 25\% & 12.6\% & 34.7\% & 114\\\bottomrule
+\end{tabular}
+\end{table}
+
+At 25\% source-correlated retention, shared in-neighbors rank 69/199 targets first, whereas two-hop paths recover 25/199. The paired discordant counts are 53 versus 9 in favor of shared in-neighbors (two-sided exact McNemar $p\approx 1.1\times10^{-8}$, exploratory and uncorrected for multiple comparisons). This is evidence that different local statistics respond differently to structured evidence loss. It is \emph{not} evidence of an identified causal percolation threshold: degree-matched negative candidate sets are regenerated for every retention condition, and eligible-node counts change. We have not performed a fixed-candidate ablation using raw graph bytes.
+
+\paragraph{Why the deletion mechanism matters.} For a fixed witness, independent edge retention gives $p^2$ survival for both a two-hop path $s\!\to\!u\!\to\!t$ and a common predecessor $u\!\to\!s,u\!\to\!t$. Under source-group retention, the path still requires two source groups and survives with probability $p^2$, while both common-predecessor edges belong to one source group and survive together with probability $p$. These are elementary \emph{witness-survival} probabilities, not predictions of Top-1 ranking accuracy. In particular, changing decoy sets even at full retention demonstrates that the observed ranking curve is not a pure percolation effect.
+
+\paragraph{Connection and boundary.} The Markov bridge is sum-product inference in a chain factor graph; edge deletion changes the constraints and local paths available to a graph retriever. The exact parity system in the following section supplies the mathematical test for \emph{claim identification}, which the real Wiki release cannot establish without a credible process-mechanism class. These are complementary experiments, not empirical proof that a single probabilistic factor model generated the Wiki or the Hugging Face incident.
+
+\section{An Exact, Large Factor-Graph Case}
+Consider $n$ unknown binary node states with noiseless observed parity records
+$y_{uv}=x_u\oplus x_v$ on surviving edges $(u,v)\in S$. With a consistent planted assignment, each connected component has one unconstrained global flip. Therefore
+\begin{equation}
+\begin{aligned}
+Z_S&=2^{c(S)},\quad F_S=-c(S)\log 2,\\
+K_{x_u\oplus x_v}(O_S)&=\ind[u\leftrightarrow v\text{ in }G_S].
+\end{aligned}
+\label{eq:xor}
+\end{equation}
+For more general linear parity checks, identification is equivalent to the target vector lying in the row span of the surviving check matrix over $\mathbb F_2$. Equation~\eqref{eq:xor} supplies an \emph{exact} graph-size-scalable link among factor constraints, partition functions, percolation, and proposition-specific reconstruction. It is a consequence of established linear algebra and connectivity, not a new theorem.
+
+\paragraph{Scaling experiment.} We generated sparse two-community parity graphs of size $n\in\{4{,}096,16{,}384,65{,}536\}$, with 1, 4, or 16 cross-community bridges. For each size/bridge pair, two fixed graph seeds, five evidence-retention rates $p\in\{.20,.35,.50,.65,.80\}$, and five masks yielded 450 graph-mask realizations. Each mask was tested on 32 within-community and 32 cross-community claims: 28,800 exact claim checks. In total, approximately 19.35 million retained parity factors were processed. Exhaustive enumeration on a five-node graph verified the component-count partition function and pairwise certificate against all binary assignments.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/recoverability_65536.png}
+\caption{Exact parity-claim recoverability on 65,536 nodes. Cross-community evidence bottlenecks are governed by surviving bridges; these are finite-size synthetic reliability curves, not evidence of a thermodynamic critical exponent.}
+\label{fig:parity}
+\end{figure}
+
+At $n=65{,}536$ and $p=.50$, cross-community recovery is 0.478 with one bridge and 0.938 with four bridges; within-community recovery with one bridge is 0.963. Bulk free-energy density is nearly equal between the bridge conditions ($-0.01788$ vs. $-0.01776$ respectively). Thus \emph{a bulk partition-function statistic by itself does not characterize the recoverability of a particular claim}: the target's placement and the topology of distinguishing constraints matter.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/free_energy_65536.png}
+\caption{Exact hard-constraint free-energy density $F/n=-c(S)\log(2)/n$ for the same graph masks. Different cross-community identification rates coexist with nearly unchanged bulk entropy density.}
+\label{fig:free}
+\end{figure}
+
+\section{Corrected Multi-Agent SCALE-1 Benchmark}
+\paragraph{Design.} A synthetic directed acyclic graph describes known attempted transfers of artifact version $v1$ before a target action. Native execution bits and delivered inbox states are generated forward and recorded separately from the evaluator's partial observations. The claim is whether the target received $v1$ with the matching hash before its action. Truthful signed native receipts, signed batch counts, and signed inbox snapshots impose reference constraints; weak acknowledgements do not. Exact mixed-integer feasibility checks whether both possible claim values remain compatible.
+
+We generated 400 independent histories (five mechanism families $\times$ five sizes $4,8,16,32,64$ $\times$ 16 replicates). Twelve independent, correlated, and targeted evidence masks per history yield 4,800 cases. Direct/relay/retry form development; spoofed-acknowledgement/stale-replica form held-out mechanisms (160 worlds; 1,920 evaluations). The topology of candidate transfers is disclosed; completely unrecorded transfers are outside scope.
+
+\paragraph{Reproducibility correction.} The original correlated-mask generator iterated an unordered Python set before consuming RNG draws. Python hash randomization changed 115 held-out labels between two nominally fixed-seed runs. We replaced the group iteration with a sorted order and \emph{regenerated the full reference data and retrained the predictors}; results below are from that deterministic revision only. Ten source tests pass, and the integrity audit reports no factual-label errors, authenticated-record contradictions, or world overlap across all 4,800 cases and 574,109 retained records.
+
+\begin{table}[t]
+\centering
+\caption{Held-out SCALE-1 identifiability prediction and certificate policies, deterministic revision. Claims are evaluated on 1,920 repeated masks from 160 independent worlds.}
+\label{tab:scale}
+\setlength{\tabcolsep}{3.5pt}
+\footnotesize
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Method & Brier $\downarrow$ & Supported & Unsupported \\
+\midrule
+Presence-only logistic & 0.1250 & 995 & 0 \\
+Content logistic & 0.0910 & \textbf{1,001} & 2 \\
+Content boosted trees & 0.0991 & 992 & 0 \\
+Claim-aware logistic & \textbf{0.0666} & 999 & 0 \\
+\midrule
+Strict receipts & -- & 701 & 0 \\
+Signed-only exact & -- & 990 & 0 \\
+Full conventional exact & -- & \textbf{1,276} & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Results.} The claim-aware model augments content features with fitted-model constraint status and graph structure. Its Brier score beats content-only logistic by $0.0244$ (world-grouped bootstrap 95\% interval for claim-aware minus content: $[-0.0308,-0.0178]$). However, at the development-selected certification thresholds, content-only logistic achieves 1,001 supported certificates with two unsupported, versus 999 with zero unsupported for claim-aware. The full conventional signed+batch+inbox exact checker reaches all 1,276 reference-identifiable claims with zero unsupported certificates. In systems with $16,32,$ or $64$ agents, the two logistic policies yield the same supported certification counts. These are descriptive results under a synthetic closed-world model; a zero observed error count does not establish zero risk in a new mechanism.
+
+
+\section{Archived HMM Evidence from Real Agent Text}
+An archived 100-session, 3,971-message LLM debate dataset provides an empirical demonstration of the sequential end of the framework. The original held-out evaluation contains 25 test sessions and 50 hidden-round rank-bin predictions. Recomputing NLL from the saved per-case predictions gives empirical-HMM NLL $1.841121$, Rayleigh--Jeans-prior HMM $1.844231$, and the \emph{original frozen} static empirical baseline $1.852771$. A retrospective evidence-deletion analysis reported an empirical-HMM NLL change of only $0.000791$ between zero and full surrounding-round context; subsequent stronger static-prior calibration further weakens any temporal-advantage claim. The target is lexical-bin composition, \emph{not} event provenance or hidden message content.
+
+Using the archived three-state HMM transition/emission parameters, a separate six-step numerical check showed agreement between forward recursion and explicit summation of all $3^6$ state paths across all $2^6$ observation masks, with maximum absolute partition-function error $4.44\times10^{-16}$. This checks the exact chain factorization but is not a new real-data predictive result. The Rayleigh--Jeans fit discussed by Frahm and Shepelyansky \cite{frahm2026} does not establish actual lexical thermalization or an inverse-reconstruction gain on this task.
+
+\section{Discussion and Limitations}
+Four conclusions are warranted. First, HMM smoothing, factor-graph inference, and variational free energy share a probabilistic structure. Second, exact parity graphs demonstrate that claim placement and bottleneck topology can alter identification without comparable change in bulk free energy. Third, on actual Wiki records, page-majority labels outperform Markov smoothing on Top-1, while structurally distinct graph scores respond differently to retention. Fourth, the corrected SCALE-1 benchmark does \emph{not} support an operational advantage for the claim-aware learner over simple content-only or exact conventional baselines.
+
+The experiments do not prove a new universal percolation threshold, a thermodynamic law governing autonomous agents, or an advantage of transport/Schr\"odinger-bridge methods. In the latter setting, additional justified path-marginal constraints would be needed; ordinary posterior conditioning is not an optimal-transport result \cite{blumenthal2026}. Our parity graphs and SCALE-1 processes are synthetic. The real Wiki experiment predicts withheld \emph{recorded} editors and edges, not uniquely identified missing private actions; its source bytes are absent from the results-only upload, and its graph distractor sampling changes with retention. The WOTH data tests a distinct lexical prediction target rather than the same historical-claim certificate. Agent-realistic missing links, strategic evidence alteration, unknown execution topology, and real independent agent trace evaluation remain open.
+
+\paragraph{Scientific next step.} The next confirmatory study should instrument genuinely unseen workflows, independently preserve native truth, and freeze target-specific constraints, mechanism classes, and inspection budgets. It should compare full exact/robust conventional inference with claimed new approximations under \emph{matched computation and risk}, and should report all three quantities: factual accuracy, reference identification, and evidential authorization. The present work is best framed as a mathematically grounded methods/negative-results submission, pending external validation.
+
+\section*{Sprint Contribution and Reproducibility}
+\noindent\textbf{New in sprint (13--15 November):} full Wiki masking evaluation and repair, row-level score audit, deterministic SCALE-1 regeneration, parity-graph computation and synthesis. \textbf{Pre-existing:} TPRN/PO-ID/IPN, older Wiki known-node findings, WOTH model parameters, prior provenance and evidence-acquisition prototypes. No direct LLM-judge or guided-LLM benchmark was conducted in this paper.
+
+\noindent\textbf{Reproducibility statement.}
+The accompanying archives contain deterministic SCALE-1 results and evaluator code, parity-graph code, the Wiki full-corpus aggregate and case-level score outputs, the amended v0.1.1 Wiki code, and archived WOTH-score recomputation. The Wiki output does not redistribute the raw records or enough candidate lists to independently rerun raw ingestion. Results were inspected retrospectively; local protocol freezing does not constitute independent preregistration. Repeated masks are clustered within worlds. No new API model calls were made for this manuscript.
+
+\begin{thebibliography}{9}\footnotesize
+\bibitem{yedidia2005} J.~S. Yedidia, W.~T. Freeman, and Y. Weiss. Constructing free-energy approximations and generalized belief propagation algorithms. \emph{IEEE Trans. Information Theory}, 51(7):2282--2312, 2005. \url{https://doi.org/10.1109/TIT.2005.850085}.
+\bibitem{evans2000} W. Evans, C. Kenyon, Y. Peres, and L.~J. Schulman. Broadcasting on trees and the Ising model. \emph{Annals of Applied Probability}, 10(2):410--433, 2000. \url{https://doi.org/10.1214/aoap/1019487349}.
+\bibitem{zdeborova2016} L. Zdeborov\'a and F. Krzakala. Statistical physics of inference: Thresholds and algorithms. \emph{Advances in Physics}, 65(5):453--552, 2016. \url{https://doi.org/10.1080/00018732.2016.1211393}.
+\bibitem{barlow1988} R.~E. Barlow and S. Iyer. Computational complexity of coherent systems and the reliability polynomial. \emph{Probability in the Engineering and Informational Sciences}, 2(4):461--469, 1988. \url{https://doi.org/10.1017/S0269964800000164}.
+\bibitem{blumenthal2026} E. Blumenthal, N. Claussen, B. Eysenbach, C. Ji, G. Reddy, C. Scheibner, and B. Sorkin. Bridging control, inference, transport, and thermodynamics. \emph{arXiv:2609.15897}, 2026.
+\bibitem{frahm2026} K.~M. Frahm and D.~L. Shepelyansky. Thermodynamics of words. \emph{arXiv:2611.14039}, 2026.
+\bibitem{collusionwiki2026} Collusion Wiki investigators. \emph{Discovery of a New OpenAI Agent Message Board}; public Wiki archive and revision export, 2026. \url{https://collusion.wiki/explorer/download.html}.
+\bibitem{mariappan2026tprn} K. K. Mariappan. \emph{The Missing Process: Reconstructing Distributed Agent Activity from Partial Traces}. Prior working draft, September 2026 (unpublished).
+\bibitem{mariappan2026provenance} K. K. Mariappan. \emph{Correspondence Is Not Provenance: Evidence-Calibrated Reconstruction of a Multi-Site Agent Campaign}. Prior working draft, September 2026 (unpublished).
+\bibitem{wikiswarm2026} \emph{WikiAgentSwarmInvestigation}, agent-graph derived interaction edges, pinned commit \texttt{e152f85f9032a8e4a55dade4b7990defe5e138c9}. \url{https://github.com/JoshuaDavid/WikiAgentSwarmInvestigation}.
+\end{thebibliography}
+
+\appendix
+\section{Limitations, Dual-Use, and Ethical Considerations}
+The Wiki records are public snapshots and derived graph links; neither confirms the underlying actor's private reasoning, intent, or identity. Retention, selection, and source-curation biases are not measured. Observational correspondence must not be promoted to directed provenance or to evidence that particular organizations or agents collaborated. Only deliberately withheld \emph{published} records supply ground truth. Test cases share pages or graph sources and should not be treated as independent at the row level. The result archive preserves scores and pinned hashes, not raw bodies or full candidate lists; external source re-verification is still needed. The provided mathematical results are either established identities or simulations, not a novel universal law. Reconstruction technology could be misused to map operational behavior from public fragments; the paper provides aggregate evaluations, abstention principles, and no procedures for extracting secrets, credentials, or private model states. A recovered candidate is not itself authorization for an investigative or operational action. The research does not make fresh allegations about actors behind public traces or attribute the Hugging Face incident to agents in the Collusion Wiki corpus.
+\end{document}

@@ -1,0 +1,31 @@
+{
+  "study": "Parities as a special factor graph; exact evidence deletion and statistical partition function",
+  "scope": "synthetic; exact mathematical benchmark; no new theorem or physical thermalization",
+  "node_sizes": [
+    4096,
+    16384,
+    65536
+  ],
+  "bridges": [
+    1,
+    4,
+    16
+  ],
+  "retentions": [
+    0.2,
+    0.35,
+    0.5,
+    0.65,
+    0.8
+  ],
+  "graphseeds": [
+    11,
+    29
+  ],
+  "masks_per_cell": 5,
+  "pairs_per_type": 32,
+  "masks": 450,
+  "claim_checks": 28800,
+  "total_retained_factors_processed": 19348463,
+  "elapsed_seconds": 13.1
+}

@@ -1,0 +1,44 @@
+{
+  "note": "Identity check is on a six-step illustration using transition and emission parameters derived from the archived WOTH analysis; it does not reproduce the WOTH full corpus likelihood for this synthetic sequence. Archived test NLL metrics are independently recomputed from the 50 saved test-case predictions.",
+  "numeric_identity": {
+    "example_observed_free_energy": 17.14168047106762,
+    "example_observed_partition": 3.593045864051559e-08,
+    "length": 6,
+    "masks": 64,
+    "max_abs_partition_difference": 4.440892098500626e-16,
+    "normalization_complete_missing": 1.0,
+    "states": 3
+  },
+  "source_archive_sha256": "8d1165adc30ee1a45312de4b9e2cfbafb626fcbf48f3d589d62d45a9b25ad42e",
+  "source_messages": 3971,
+  "source_sessions": 100,
+  "test_cases": 50,
+  "test_scores": {
+    "HMM_EMP": {
+      "cases": 50,
+      "mean_case_nll": 1.8411209236848614,
+      "token_weighted_nll": 1.841159540027602
+    },
+    "HMM_EMP_TIME_SHAM": {
+      "cases": 50,
+      "mean_case_nll": 1.8426577573393632,
+      "token_weighted_nll": 1.8427006420412548
+    },
+    "HMM_RJE": {
+      "cases": 50,
+      "mean_case_nll": 1.8442305869207285,
+      "token_weighted_nll": 1.8442755486225209
+    },
+    "HMM_ZIPF": {
+      "cases": 50,
+      "mean_case_nll": 1.8474500435071066,
+      "token_weighted_nll": 1.84749170720703
+    },
+    "STATIC_EMP": {
+      "cases": 50,
+      "mean_case_nll": 1.8527710192653015,
+      "token_weighted_nll": 1.852828495452252
+    }
+  },
+  "test_sessions": 25
+}

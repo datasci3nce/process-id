@@ -1,0 +1,47 @@
+{
+  "gated_mc_minus_gated_static_all": {
+    "delta_mean": -0.025104236805119598,
+    "ci95": [
+      -0.038449419090130166,
+      -0.012861151756353379
+    ],
+    "worlds": 160,
+    "cases": 1600
+  },
+  "gated_mc_minus_gated_static_unknown": {
+    "delta_mean": -0.044236540625761406,
+    "ci95": [
+      -0.06661374066254998,
+      -0.022563177353165445
+    ],
+    "worlds": 159,
+    "cases": 908
+  },
+  "gated_timed_minus_gated_static_unknown": {
+    "delta_mean": -0.007932136637181246,
+    "ci95": [
+      -0.017094417644195406,
+      0.0011495487426798439
+    ],
+    "worlds": 159,
+    "cases": 908
+  },
+  "gated_dde_minus_gated_static_unknown": {
+    "delta_mean": -9.040920132449036e-05,
+    "ci95": [
+      -0.001551461015073566,
+      0.0015189643650090118
+    ],
+    "worlds": 159,
+    "cases": 908
+  },
+  "gated_mc_minus_gated_timed_unknown": {
+    "delta_mean": -0.03630440398858016,
+    "ci95": [
+      -0.05427559840837694,
+      -0.018037133703521654
+    ],
+    "worlds": 159,
+    "cases": 908
+  }
+}

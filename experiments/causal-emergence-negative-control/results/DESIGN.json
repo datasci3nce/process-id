@@ -1,0 +1,60 @@
+{
+  "title": "CE\u2013Recoverability 1, exact small-state factorial test",
+  "models": {
+    "emergent_stochastic": [
+      0.92,
+      0.5,
+      0.5
+    ],
+    "isotropic_stochastic_control": [
+      0.92,
+      0.92,
+      0.92
+    ],
+    "declining_path_stochastic_control": [
+      0.92,
+      1.0,
+      1.0
+    ],
+    "emergent_deterministic": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "all_deterministic_control": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "all_random_negative_control": [
+      0.5,
+      0.5,
+      0.5
+    ]
+  },
+  "timesteps": 3,
+  "micro_states": 8,
+  "observation_channels": 9,
+  "observation_schemes": [
+    "independent",
+    "grouped_by_component",
+    "macro_channel_blind"
+  ],
+  "total_mask_rows": 3504,
+  "probability_measure": "uniform initial microstate, product Markov transition",
+  "causal_power_measure": "Both PyMergence CE2.0 suff_plus_nec minus 1 (primary), and normalized intervention mutual information/effectiveness (sensitivity)",
+  "coarse_graining_validity": "strong lumpability exact (row aggregate equality)",
+  "claims": [
+    "micro_8",
+    "meso_4",
+    "macro_2"
+  ],
+  "support_rule": "strictly positive compatible-history mass, no confidence threshold",
+  "primary_comparison": "emergent_stochastic versus declining_path_stochastic_control and isotropic_stochastic_control; target-bit TPM and observation process held identical",
+  "not_claimed": [
+    "full CE2.0 lattice search",
+    "causal emergence universal theorem",
+    "real agent transfer",
+    "measured DDE dynamics"
+  ]
+}

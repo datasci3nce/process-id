@@ -1,0 +1,72 @@
+{
+  "causal_primitive_path": {
+    "emergent_stochastic": {
+      "micro": 0.1008,
+      "meso": 0.2351999999999998,
+      "macro": 0.7056,
+      "delta": 0.6048
+    },
+    "isotropic_stochastic_control": {
+      "micro": 0.5659588730880003,
+      "meso": 0.63635712,
+      "macro": 0.7056,
+      "delta": 0.1396411269119997
+    },
+    "declining_path_stochastic_control": {
+      "micro": 0.8317714285714286,
+      "meso": 0.8037333333333334,
+      "macro": 0.7056,
+      "delta": -0.1261714285714286
+    },
+    "emergent_deterministic": {
+      "micro": 0.1428571428571428,
+      "meso": 0.3333333333333335,
+      "macro": 1.0,
+      "delta": 0.8571428571428572
+    },
+    "all_deterministic_control": {
+      "micro": 1.0,
+      "meso": 1.0,
+      "macro": 1.0,
+      "delta": 0.0
+    },
+    "all_random_negative_control": {
+      "micro": 0.0,
+      "meso": 0.0,
+      "macro": 0.0,
+      "delta": 0.0
+    }
+  },
+  "p50_independent": {
+    "emergent_stochastic": {
+      "macro_recovery": 0.4999999999999999,
+      "micro_recovery": 0.125,
+      "brier_macro": 0.0653415199999999
+    },
+    "isotropic_stochastic_control": {
+      "macro_recovery": 0.5,
+      "micro_recovery": 0.125,
+      "brier_macro": 0.06534152
+    },
+    "declining_path_stochastic_control": {
+      "macro_recovery": 0.5,
+      "micro_recovery": 0.3828125,
+      "brier_macro": 0.0653415199999999
+    },
+    "emergent_deterministic": {
+      "macro_recovery": 0.875,
+      "micro_recovery": 0.21875,
+      "brier_macro": 0.03125
+    },
+    "all_deterministic_control": {
+      "macro_recovery": 0.875,
+      "micro_recovery": 0.669921875,
+      "brier_macro": 0.03125
+    },
+    "all_random_negative_control": {
+      "macro_recovery": 0.5,
+      "micro_recovery": 0.125,
+      "brier_macro": 0.125
+    }
+  }
+}

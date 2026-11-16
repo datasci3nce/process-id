@@ -1,0 +1,16 @@
+{
+  "independent_audit": "PASS",
+  "mask_certificates": {
+    "NO": 120,
+    "UNKNOWN": 312,
+    "YES": 144
+  },
+  "note": "Event+blob consistency verified; does not independently instrument OS-level file reads.",
+  "stress_model_violations": 12,
+  "verified_acquisition_trials": 864,
+  "verified_complete_hash_chains": 156,
+  "verified_mask_cases": 576,
+  "verified_matched_public_pairs": 72,
+  "verified_regular_worlds": 144,
+  "verified_stress_worlds": 12
+}

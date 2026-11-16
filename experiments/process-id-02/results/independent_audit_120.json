@@ -1,0 +1,14 @@
+{
+  "native_worlds": 120,
+  "physical_file_read_events": 95,
+  "verified_mask_cases": 200,
+  "certificate_counts": {
+    "YES": 43,
+    "UNKNOWN": 30,
+    "NO": 127
+  },
+  "false_closed_world_certificates": 0,
+  "llm_false_certificates": 0,
+  "llm_unsupported_certificates": 0,
+  "trust_note": "checks file integrity and model-relative facts, NOT cryptographic signature or external provenance"
+}

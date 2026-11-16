@@ -1,0 +1,11 @@
+{
+  "source_repository": "JoshuaDavid/WikiAgentSwarmInvestigation",
+  "commit": "e152f85f9032a8e4a55dade4b7990defe5e138c9",
+  "git_blob_sha1": "55af9d43bfa79d60c3c3c48cd8381ec8b7ddd671",
+  "rows": 11177,
+  "nodes": 1958,
+  "heldout_source_links": 199,
+  "source_access": "GitHub repository connector; source bytes deliberately not redistributed",
+  "evaluation": "Post-hoc fixed candidate rerun; 64 seeded deletion masks per arm and rate; source-correlated and independent; exact 199 denominator; eligibility gated",
+  "execution_note": "Rerun source-connected evaluation was computed in JavaScript with pinned repository text; executable Python source replication provided, but source bytes not locally bundled."
+}

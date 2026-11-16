@@ -1,0 +1,10 @@
+availability,comparator,delta_mean,ci_lower,ci_upper
+1.0,adaptive_path-random,0.45,0.38125,0.51875
+1.0,adaptive_path-frozen_path,0.325,0.253125,0.396875
+1.0,frozen_path-random,0.125,0.078125,0.175
+0.5,adaptive_path-random,0.1375,0.09375,0.18132812499999887
+0.5,adaptive_path-frozen_path,0.1,0.065625,0.1375
+0.5,frozen_path-random,0.0375,0.0125,0.065625
+0.25,adaptive_path-random,0.021875,0.00625,0.0375
+0.25,adaptive_path-frozen_path,0.01875,0.00625,0.034375
+0.25,frozen_path-random,0.003125,-0.00625,0.015625

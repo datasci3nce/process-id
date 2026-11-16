@@ -1,0 +1,51 @@
+{
+  "base_seed": 260115,
+  "design": {
+    "families": [
+      "direct",
+      "relay",
+      "retry",
+      "spoof_ack",
+      "stale_replica"
+    ],
+    "masks": [
+      "independent",
+      "correlated",
+      "targeted"
+    ],
+    "retentions": [
+      0.25,
+      0.5,
+      0.75,
+      0.9
+    ],
+    "sizes": [
+      4,
+      8,
+      16,
+      32,
+      64
+    ]
+  },
+  "development": 2880,
+  "examples": 4800,
+  "heldout": 1920,
+  "label_definition": "both target truth values feasible vs exactly one under truthful signed records and public known attempt topology",
+  "numpy": "2.3.5",
+  "per_size_family": 16,
+  "python": "3.13.5",
+  "run_seconds": 31.515,
+  "scipy": "1.17.0",
+  "scope": "SYNTHETIC closed-world topology only; not real LLM agents; not novel theorem",
+  "summary": {
+    "('development', 'examples')": 2880,
+    "('development', 'identified')": 2063,
+    "('development', 'truth_true')": 2484,
+    "('development', 'worlds')": 240,
+    "('heldout', 'examples')": 1920,
+    "('heldout', 'identified')": 1276,
+    "('heldout', 'truth_true')": 1452,
+    "('heldout', 'worlds')": 160
+  },
+  "worlds": 400
+}

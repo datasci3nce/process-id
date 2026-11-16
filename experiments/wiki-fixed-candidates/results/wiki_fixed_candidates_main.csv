@@ -1,0 +1,9 @@
+mode,retention,eligible_targets,two_hop_correct_of_199,shared_in_correct_of_199,two_hop_top1,shared_in_top1
+independent,1,199,132,87,0.66331658,0.43718593
+independent,0.75,185,102,77,0.51256281,0.38693467
+independent,0.5,169,77,67,0.38693467,0.33668342
+independent,0.25,140,31,37,0.15577889,0.18592965
+source_correlated,1,199,132,87,0.66331658,0.43718593
+source_correlated,0.75,179,96,87,0.48241206,0.43718593
+source_correlated,0.5,144,53,77,0.26633166,0.38693467
+source_correlated,0.25,114,20,67,0.10050251,0.33668342

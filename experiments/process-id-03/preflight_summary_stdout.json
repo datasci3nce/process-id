@@ -1,0 +1,66 @@
+{
+  "acquisition_test": {
+    "0.5": {
+      "auxiliary_first": {
+        "certified": 12,
+        "mean_cost": 2.0,
+        "n": 48,
+        "rate": 0.25
+      },
+      "registered_first": {
+        "certified": 4,
+        "mean_cost": 1.0,
+        "n": 48,
+        "rate": 0.08333333333333333
+      },
+      "route_aware": {
+        "certified": 16,
+        "mean_cost": 1.6666666666666667,
+        "n": 48,
+        "rate": 0.3333333333333333
+      }
+    },
+    "1.0": {
+      "auxiliary_first": {
+        "certified": 32,
+        "mean_cost": 2.0,
+        "n": 48,
+        "rate": 0.6666666666666666
+      },
+      "registered_first": {
+        "certified": 8,
+        "mean_cost": 1.0,
+        "n": 48,
+        "rate": 0.16666666666666666
+      },
+      "route_aware": {
+        "certified": 40,
+        "mean_cost": 1.6666666666666667,
+        "n": 48,
+        "rate": 0.8333333333333334
+      }
+    }
+  },
+  "best_possible_public_only_test_accuracy": 0.5,
+  "false_certificates_under_declared_model": 0,
+  "llm_calls": 0,
+  "mask_test_certificates": {
+    "NO": 40,
+    "UNKNOWN": 104,
+    "YES": 48
+  },
+  "matched_pairs": 72,
+  "model_assumption": "exactly registered and auxiliary trusted read channels",
+  "openrouter_cost_usd": 0.0,
+  "protocol": "PROCESS-ID-0.3 deterministic PRE-FLIGHT, no LLM calls",
+  "public_observational_pairs_differ_in_truth": 72,
+  "seed": 20261115,
+  "stress_closed_world_NO_but_actual_YES": 12,
+  "stress_is_assumption_violation_not_in_model_model_error": true,
+  "stress_out_of_model_worlds": 12,
+  "test_worlds": 48,
+  "train_worlds": 96,
+  "truth_negative": 72,
+  "truth_positive": 72,
+  "worlds": 144
+}
