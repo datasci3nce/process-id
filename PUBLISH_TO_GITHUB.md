@@ -1,24 +1,24 @@
-# Publish to GitHub
+# Complete the experiment-code upload
 
-Repository: `datasci3nce/process-id` (public).
+The **public GitHub repository already exists** at https://github.com/datasci3nce/process-id and has a README, research-lineage document and revised papers. The experiment source tree is still incomplete.
 
-## 1. Create the empty repository
-Open https://github.com/new and choose owner `datasci3nce`, repository name `process-id`, visibility **Public**. Leave the initialization options empty (do not add a README, .gitignore, or license; those are supplied here).
+The complete reviewed release snapshot is provided separately as `process-id-github-ready-with-prior-work.zip`.
 
-## 2. Push this extracted directory
-Extract `process-id-github-ready.zip` to a local directory, open a terminal in it, and run:
+## Upload the remaining files locally
+
+1. Download and extract the reviewed ZIP.
+2. Run these commands inside the extracted root. They preserve the existing repository and push only the files in the reviewed snapshot.
 
 ```bash
-git init -b main
+git clone https://github.com/datasci3nce/process-id.git
+cd process-id
+# Copy the extracted snapshot contents here, preserving the experiments/ and papers/ directories.
 git add .
-git commit -m "Initial public research release: code, results, and two draft papers"
-git remote add origin https://github.com/datasci3nce/process-id.git
-git push -u origin main
+git status
+git commit -m "Add vetted experiment source, tests, summaries and figures"
+git push origin main
 ```
 
-GitHub may request authentication (Git Credential Manager or a credential helper). Do not paste a personal access token into this repository.
+If `git status` shows unexpected additions (private ledger, original evaluator-only label, API key, raw external Wiki export), **do not commit**. Never commit credential files or full raw experimental archives.
 
-## After publishing
-Confirm the two manuscripts at `papers/` and experiment source at `experiments/`. The ZIP itself should **not** be uploaded as a single file; GitHub will not unpack it. The archived evaluator-only labels, private execution ledgers and external raw Wiki data are deliberately excluded.
-
-This repository deliberately has **no LICENSE file** until the author selects a license. Public visibility alone does not grant an open-source license.
+Once all files are committed, revise the repository README to point to the actual code locations. The earlier TPRN repo is a separate historical artifact and does not need to be duplicated.
